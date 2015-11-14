@@ -4,7 +4,7 @@
     <facet type="django" name="Django">
       <configuration>
         <option name="rootFolder" value="$MODULE_DIR$/UBHacking/pillpal" />
-        <option name="settingsModule" value="" />
+        <option name="settingsModule" value="pillpal/settings.py" />
         <option name="manageScript" value="manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
       </configuration>
@@ -19,6 +19,11 @@
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/UBHacking/pillpal/alphapillpal/templates" />
+      </list>
+    </option>
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />
