@@ -19,5 +19,6 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', include("alphapillpal.urls", namespace="alphapillpal"))
+    url(r'^$', RedirectView.as_view(url='/alphapillpal/', permanent=False)),
+    url(r'^alphapillpal/', include("alphapillpal.urls", namespace="alphapillpal"))
 ]
