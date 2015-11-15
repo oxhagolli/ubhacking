@@ -6,23 +6,13 @@
     <p>Have you ever forgetten to take your medicine on time? Have you ever forgotten what medicine to take? That's why we're here. We will message and/or call you for free, so you will never have to worry about forgetting your meds again!</p>
     <h2>Doctors</h2>
     <p>Alpha Pill Pal will help you connect with your patients by simplifying the prescription process. On top of that, we make it simpler and easier to remind patients to take their perscriptions as scheduled.</p>
+    {% if error_message %}
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close"> &times; </a>
+            <strong>Error!</strong> {{ error_message }}
+        </div>
+    {% endif %}
     <form class="form-horizontal" role="form" action="" method="POST" id="form">
-        {% if error == "email" %}
-            <div class="alert alert-danger fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close"> &times; </a>
-                <strong>Error!</strong> Your e-mail was not found. <a href="alphapillpal/create.html">Click here</a> to create one.
-            </div>
-        {% elif error == "password" %}
-            <div class="alert alert-danger fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close"> &times; </a>
-                <strong>Error!</strong> Your password is not correct. Please try again.
-            </div>
-        {% elif error %}
-            <div class="alert alert-danger fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close"> &times; </a>
-                <strong>Error!</strong> Something went wrong! Please contact a web administrator.
-            </div>
-        {% endif %}
         {% csrf_token %}
         <div class="form-group">
             <label class="control-label col-md-3" for="email">Email:</label>
