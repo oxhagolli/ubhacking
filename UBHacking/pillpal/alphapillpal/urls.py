@@ -27,5 +27,5 @@ urlpatterns = [
     # Edit existing medications
     url(r'^editMedication/$', views.medications.editMedication, name='editMedication'),
     # View existing medications
-    url(r'^viewMedication/$', views.medications.viewMedication, name='viewMedication')
+    url(r'^home-patient/$', views.medications.viewMedication, name='home-patient')
 ]

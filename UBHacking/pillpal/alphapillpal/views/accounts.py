@@ -60,6 +60,9 @@ def home(request):
     if request.user.is_superuser or request.user.is_staff:
         return utils.render(request, "alphapillpal/home-administrator.html")
 
+    # redirect to login page!
+    return HttpResponseRedirect(reverse("alphapillpal:login"))
+
 
 
 
@@ -79,11 +82,11 @@ def create_account(request):
     email = request.POST.get("email", "").strip()
     password1 = request.POST.get("password1", "")
     password2 = request.POST.get("password2", "")
-    firstName = request.POST.get("firstName", "").strip()
-    lastName = request.POST.get("lastName", "").strip()
+    firstName = request.POST.get("first_name", "").strip()
+    lastName = request.POST.get("last_name", "").strip()
 
     def err(msg):
-        return utils.render(request, "portal/create.html", {
+        return utils.render(request, "alphapillpal/create.html", {
             "username": email,
             "email": email,
             "firstName": firstName,

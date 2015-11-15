@@ -11,6 +11,9 @@ from django.utils.translation import gettext as _
 from ..models import *
 from .. import utils
 
+#JSON decoder
+jsonDec = json.JSONDecoder()
+
 def addMedicationDoc(request):
     #if they haven't submitted yet
     if request.method != "POST":
@@ -93,9 +96,9 @@ def editMedication(request):
 
     medicine.save()
 
-    return HttpResponseRedirect(reverse("alphapillpal:viewMedication"))
+    return HttpResponseRedirect(reverse("alphapillpal:home"))
 
 
 #view medications
 def viewMedication(request):
-    return utils.render(request, "alphapillpal/viewMedication.html")
+    return utils.render(request, "alphapillpal/home-patient.html")
