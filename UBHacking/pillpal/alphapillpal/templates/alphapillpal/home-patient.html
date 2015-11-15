@@ -8,7 +8,7 @@
     </div>
     {% endif %}
     <p>My Medications:</p>
-    <table id="meds" class=".table-striped .table-hover">
+    <table id="meds" class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>Name</th>
@@ -18,11 +18,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for medication in medications %}
+            {% for medication in user.medication_set.all %}
             <tr>
-                <td>{{ medication[0] }}</td>
-                <td>{{ medication[1] }}</td>
-                <td>{{ medication[2] }}</td>
+                <td>{{ medication.name }}</td>
+                <td>{{ medication.get_times }}</td>
+                <td>{{ medication.get_days }}</td>
                 <td><button class="btn btn-lg">Remove</button></td>
             </tr>
             {% endfor %}
