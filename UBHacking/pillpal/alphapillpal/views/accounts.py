@@ -51,6 +51,11 @@ def logout_page(request):
 
 #user's home page
 def home(request):
+    if request.method == "POST":
+        temp = request.user.medication_set.get(pk=request.POST.get("medicine", ""))
+        if temp is not None:
+            temp.delete()
+
     for group_name, item_name, group in utils.USER_GROUPS:
         if utils.user_in_group(request.user, group_name):
             return utils.render(request, "alphapillpal/home-%s.html" %

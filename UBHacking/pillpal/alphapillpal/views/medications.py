@@ -59,14 +59,6 @@ def addMedication(request):
     return HttpResponseRedirect(reverse("alphapillpal:home"))
 
 
-#remove existing medication
-def removeMedication(request):
-    #getting patient
-    patient = request.POST.get("patient", "")
-    #getting medicine we want to remove and removes it
-    patient.medication_set.get(pk=request.POST.get("medicine")).delete()
-
-
 
 #edit existing medication
 def editMedication(request):

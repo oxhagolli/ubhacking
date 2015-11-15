@@ -20,10 +20,14 @@
         <tbody>
             {% for medication in user.medication_set.all %}
             <tr>
+                <form class="form-horizontal" role="form" action="" method="POST" id="form">
+                {% csrf_token %}
+                <input type="hidden" name="medicine" value="{{ medication.id }}" />
                 <td>{{ medication.name }}</td>
                 <td>{{ medication.get_times }}</td>
                 <td>{{ medication.get_days }}</td>
-                <td><button class="btn btn-lg">Delete</button></td>
+                <td><input type="submit" class="btn btn-lg" value="Delete" /></td>
+                </form>
             </tr>
             {% endfor %}
         </tbody>

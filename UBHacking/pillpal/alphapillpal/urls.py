@@ -22,8 +22,6 @@ urlpatterns = [
     # Two urls- one for doctor and one for patient adding medication...for now addMedication is general (for patient)
     url(r'^addMedicationDoc/$', views.medications.addMedicationDoc, name='addMedicationDoc'),
     url(r'^addMedication/$', views.medications.addMedication, name='addMedication'),
-    # Remove medication
-    url(r'^removeMedication/$', views.medications.removeMedication, name='removeMedication'),
     # Edit existing medications
     url(r'^editMedication/$', views.medications.editMedication, name='editMedication'),
     # View existing medications
