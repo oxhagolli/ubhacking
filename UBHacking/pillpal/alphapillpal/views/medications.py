@@ -11,8 +11,6 @@ from django.utils.translation import gettext as _
 from ..models import *
 from .. import utils
 
-#JSON decoder
-jsonDec = json.JSONDecoder()
 
 def addMedicationDoc(request):
     #if they haven't submitted yet
@@ -38,7 +36,7 @@ def addMedicationDoc(request):
 
 
 #add new medication
-def addMedicationPat(request):
+def addMedication(request):
     #if they haven't submitted yet
     if request.method != "POST":
         # Just the base page
@@ -48,9 +46,7 @@ def addMedicationPat(request):
     time = request.POST.get("time", "")
     days = [] #list of days that medication needs to be taken
     for day in days:
-        #ORENS DO PLS
         return
-
     daysJson = json.dumps(days)
 
     #created new medication for patient

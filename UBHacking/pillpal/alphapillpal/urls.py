@@ -19,9 +19,9 @@ urlpatterns = [
     url(r'^patients/details/$', views.doctor.patient_details,
         name='patientdetails'),
 
-    # Two urls- one for doctor and one for patient adding medication
+    # Two urls- one for doctor and one for patient adding medication...for now addMedication is general (for patient)
     url(r'^addMedicationDoc/$', views.medications.addMedicationDoc, name='addMedicationDoc'),
-    url(r'^addMedicationPat/$', views.medications.addMedicationPat, name='addMedicationPat'),
+    url(r'^addMedication/$', views.medications.addMedicationPat, name='addMedicationPat'),
     # Remove medication
     url(r'^removeMedication/$', views.medications.removeMedication, name='removeMedication'),
     # Edit existing medications
