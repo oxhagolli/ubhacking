@@ -44,16 +44,19 @@ def addMedication(request):
     #otherwise, user submitted an edited version
     name = request.POST.get("name", "").strip()
     time = request.POST.get("time", "")
-    days = [] #list of days that medication needs to be taken
+    times = json.dumps([time]) #change this in the future when we have more times - look down!
+    chosenDays = []
+    days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] #list of days that medication needs to be taken
+    #put chosen strings in new list
     for day in days:
-        return
-    daysJson = json.dumps(days)
+        if request.POST.get(day) is not None:
+            chosenDays.append(request.POST.get(day))
+    # Turn the list into JSON string
+    daysJson = json.dumps(chosenDays)
 
     #created new medication for patient
-    request.user.medication_set.create(patient=request.user, name=name, time=time, days=daysJson)
-
-    return HttpResponseRedirect(reverse("alphapillpal:patient-details"))
-
+    request.user.medication_set.create(patient=request.user, name=name, time=times, days=daysJson)
+    return HttpResponseRedirect(reverse("alphapillpal:home"))
 
 
 #remove existing medication

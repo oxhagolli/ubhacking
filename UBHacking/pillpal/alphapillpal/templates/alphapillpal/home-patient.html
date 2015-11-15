@@ -7,7 +7,7 @@
         <strong>Error!</strong> {{ error_message }}
     </div>
     {% endif %}
-    <p>My Medications:</p>
+    <h1>Medications</h1>
     <table id="meds" class="table table-striped table-hover">
         <thead>
             <tr>
@@ -23,11 +23,11 @@
                 <td>{{ medication.name }}</td>
                 <td>{{ medication.get_times }}</td>
                 <td>{{ medication.get_days }}</td>
-                <td><button class="btn btn-lg">Remove</button></td>
+                <td><button class="btn btn-lg">Delete</button></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <button class="btn btn-lg col-md-offset-5 col-md-3">Add Medication</button>
+    <a href="{% url 'alphapillpal:addMedication' %}"><button class="btn btn-lg col-md-offset-4 col-md-4 col-centered">Add Medication</button></a>
         
 {% endblock %}

@@ -19,7 +19,7 @@ class Medication(models.Model):
             str1 += str(item)
             if item != len(lst)-1:
                 str1 += ", "
-        return str1
+        return str1[:len(str1)-2]
 
     def get_days(self):
         jsonDec = json.JSONDecoder()
@@ -30,4 +30,4 @@ class Medication(models.Model):
             str1 += str(item)
             if item != len(lst)-1:
                 str1 += ", "
-        return str1
+        return str1[:len(str1)-2]

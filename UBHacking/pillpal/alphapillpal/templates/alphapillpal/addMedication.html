@@ -1,0 +1,54 @@
+{% extends 'alphapillpal/base.html' %}
+
+{% block content %}
+    {% if error_message %}
+    <div class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close"> &times; </a>
+        <strong>Error!</strong> {{ error_message }}
+    </div>
+    {% endif %}
+
+    <h1>Add Medication</h1>
+    <form class="form-horizontal" role="form" action="" method="POST" id="form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="control-label col-md-3"
+                   for="name">Name:</label>
+            <div class="col-md-7">
+                <input class="form-control" id="name" name="name"
+                       placeholder="Medication Name" required>
+            </div>
+        </div>
+        <div id="times">
+            <div class="form-group">
+                <label class="control-label col-md-3"
+                       for="time">Time:</label>
+                <div class="input-group bootstrap-timepicker timepicker col-md-7">
+                    <input class="form-control input-large" type="type" id="time" name="time" required />
+                </div>
+            </div>
+            <!--More than 1 time-->
+        </div>
+        <div id="days" class="form-group">
+            <label class="checkbox-inline"><input name="Sun" id="Sun" type="checkbox" value="Sun">Sun</label>
+            <label class="checkbox-inline"><input name="Mon" id="Mon" type="checkbox" value="Mon">Mon</label>
+            <label class="checkbox-inline"><input name="Tue" id="Tue" type="checkbox" value="Tue">Tues</label>
+            <label class="checkbox-inline"><input name="Wed" id="Wed" type="checkbox" value="Wed">Wed</label>
+            <label class="checkbox-inline"><input name="Thu" id="Thu" type="checkbox" value="Thu">Thurs</label>
+            <label class="checkbox-inline"><input name="Fri" id="Fri" type="checkbox" value="Fri">Fri</label>
+            <label class="checkbox-inline"><input name="Sat" id="Sat" type="checkbox" value="Sat">Sat</label>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-default col-md-offset-4 col-md-4" value="Add Medication">
+        </div>
+    </form>
+<a href="{% url 'alphapillpal:home' %}"><button class="btn btn-lg col-md-offset-4 col-md-4">Cancel</button></a>
+    <script type="text/javascript">
+        $("#time").timepicker({
+            minuteStep: 5,
+            showInputs: false,
+            disableFocus: true
+        });
+    </script>
+        
+{% endblock %}
