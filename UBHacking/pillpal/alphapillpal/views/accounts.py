@@ -5,7 +5,9 @@ from django.http import HttpResponseRedirect, HttpResponseForbidden, \
     Http404, HttpResponseBadRequest, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.hashers import check_password
+from django.utils.translation import gettext as _
 
+from ..models import *
 from .. import utils
 
 
@@ -79,11 +81,41 @@ def create_account(request):
     firstName = request.POST.get("firstName" "").strip()
     lastName = request.POST.get("lastName", "").strip()
 
+    def err(msg):
+        return utils.render(request, "portal/create.html", {
+            "username": username,
+            "email": email,
+            "firstName": firstName,
+            "lastName": lastName,
+            "error_message": msg
+        })
+    #check username first
+    if not username:
+        return err(_("Missing username"))
+    if User.objects.filter(username=username).exists():
+        return err(_("Username alrready taken"))
+
+    #check email next
+    if not email:
+        return err(_("Missing email"))
+
+    if not firstName or not lastName:
+        return err(_("Missing name"))
+
+    #check password next
+    if not password1 or not password2:
+        return err(_("Missing password"))
+    if password1 != password2:
+        return err(_("Passwords don't match"))
+
+
     user = User.objects.create_user(username=username,
                                     email=email,
                                     password=password1,
                                     first_name=firstName,
                                     last_name=lastName)
+    if user is None:
+        return err(_("Couldn't create user"))
     user.groups = Group.objects.filter(name="Patients")
     user.save()
 
