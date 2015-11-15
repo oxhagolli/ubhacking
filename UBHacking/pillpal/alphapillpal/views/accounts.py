@@ -79,7 +79,7 @@ def create_account(request):
     email = request.POST.get("email", "").strip()
     password1 = request.POST.get("password1", "")
     password2 = request.POST.get("password2", "")
-    firstName = request.POST.get("firstName" "").strip()
+    firstName = request.POST.get("firstName", "").strip()
     lastName = request.POST.get("lastName", "").strip()
 
     def err(msg):

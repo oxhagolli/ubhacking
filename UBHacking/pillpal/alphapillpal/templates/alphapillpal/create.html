@@ -1,0 +1,79 @@
+{% extends "alphapillpal/base.html" %}
+
+{% block content %}
+<h1>Create Account</h1>
+{% if error_message %}
+    <div class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close"> &times; </a>
+        <strong>Error!</strong> {{ error_message }}
+    </div>
+{% endif %}
+
+<form class="form-horizontal" role="form" action="" method="POST" id="form">
+    {% csrf_token %}
+    <p>Already have an account? <a href="{% url 'alphapillpal:login' %}">Click here</a> to log in.</p>
+    <div class="form-group">
+        <label class="control-label col-md-3"
+               for="first_name">Name:</label>
+        <div class="col-md-7">
+            <input class="form-control halfsies" id="first_name" name="first_name"
+                   placeholder="First Name" value="{{ first_name }}" required>
+            <input class="form-control halfsies" id="last_name" name="last_name"
+                   placeholder="Last Name" value="{{ last_name }}" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3"
+               for="email">E-mail:</label>
+        <div class="col-md-7">
+            <input class="form-control" type="email" id="email" name="email"
+                   placeholder="test@example.com" value="{{ email }}" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-3"
+               for="password1">Password:</label>
+        <div class="col-md-7">
+            <input type="password" class="form-control" id="password1"
+                   name="password1" required placeholder="Enter password">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3"
+               for="password2">Confirm Password:</label>
+        <div class="col-md-7">
+            <input type="password" class="form-control" id="password2"
+                   name="password2" required placeholder="Enter password again">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-5">
+            <input type="submit" class="btn btn-default col-md-3"
+                   value="Create Account">
+        </div>
+    </div>
+</form>
+<style>
+    #password1 {
+      margin-bottom: 15px;
+    }
+    .progress {
+      margin-bottom: 0px;
+    }
+    .halfsies {
+        display: inline;
+        width: 45%;
+        margin-right: 12px;
+        margin-left: 12px;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function ($) {
+
+     $('#password1').pwstrength({
+            ui: { showVerdictsInsideProgressBar: true }
+        });
+    });
+    </script>
+{% endblock %}
