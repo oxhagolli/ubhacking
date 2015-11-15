@@ -1,0 +1,23 @@
+{% extends "alphapillpal/base.html" %}
+
+{% block content %}
+<h1>Medication List</h1><br/>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Days</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for p in request.user.medication_set.all %}
+        <tr>
+            <td>{{ p.name }}</td>
+            <td>{{ p.time }}</td>
+            <td>{{ p.days }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

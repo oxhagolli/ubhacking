@@ -11,4 +11,6 @@ urlpatterns = [
 
     # Create Account
     url(r'^create/$', views.accounts.create_account, name='create')
+
+    # add two urls- one for doctor and one for patient adding medication
 ]
