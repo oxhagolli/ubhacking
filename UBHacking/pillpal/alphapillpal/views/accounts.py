@@ -87,6 +87,7 @@ def create_account(request):
     email = request.POST.get("email", "").strip()
     password1 = request.POST.get("password1", "")
     password2 = request.POST.get("password2", "")
+    phone = request.POST.get("phone", "").strip()
     firstName = request.POST.get("first_name", "").strip()
     lastName = request.POST.get("last_name", "").strip()
 
@@ -108,6 +109,10 @@ def create_account(request):
     if not email:
         return err(_("Missing email"))
 
+
+    if not phone:
+        return err(_("Missing phone"))
+
     if not firstName or not lastName:
         return err(_("Missing name"))
 
@@ -123,11 +128,16 @@ def create_account(request):
                                     password=password1,
                                     first_name=firstName,
                                     last_name=lastName)
+    pmodel = PhoneModel(phone=phone)
     if user is None:
         return err(_("Couldn't create user"))
+    if pmodel is None:
+        return err(_("Couldn't create phone model"))
+
     user.groups = Group.objects.filter(name="Patients")
     user.save()
 
+    pmodel.save()
     #login as new user
     user = authenticate(username=email, password=password1)
     login(request, user)
