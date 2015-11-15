@@ -24,7 +24,6 @@ def render(request, template_name, vars=None, *args, **kwargs):
     if request.user.is_authenticated() and "user" not in vars:
         vars["user"] = request.user
         vars["is_doctor"] = user_in_group(request.user, "Doctors")
-        vars["is_nurse"] = user_in_group(request.user, "Nurses")
         vars["is_patient"] = user_in_group(request.user, "Patients")
     return django_render(request, template_name, vars, *args, **kwargs)
 
@@ -77,7 +76,7 @@ def requires_user(user_groups=None, redirect_on_fail=None):
             # Nope, the user failed :(
 
             if redirect_on_fail is True:
-                return HttpResponseRedirect(reverse("portal:login"))
+                return HttpResponseRedirect(reverse("alphapillpal:login"))
             if redirect_on_fail is False:
                 return HttpResponseForbidden("<h1>Access Denied</h1>")
 
@@ -86,10 +85,10 @@ def requires_user(user_groups=None, redirect_on_fail=None):
 
             # If no user was logged in, redirect to the login page
             if not logged_in:
-                return HttpResponseRedirect(reverse("portal:login"))
+                return HttpResponseRedirect(reverse("alphapillpal:home"))
             # If we were accepting ANY group and the user STILL failed, log out
             if any_group:
-                return HttpResponseRedirect(reverse("portal:logout"))
+                return HttpResponseRedirect(reverse("alphapillpal:logout"))
             # Last resort: throw a 404 at them
             raise Http404()
         return _request_handler
