@@ -130,16 +130,15 @@ def create_account(request):
                                     password=password1,
                                     first_name=firstName,
                                     last_name=lastName)
-    pmodel = PhoneModel(phone=phone)
     if user is None:
         return err(_("Couldn't create user"))
-    if pmodel is None:
+    if phone is None:
         return err(_("Couldn't create phone model"))
 
+    user.phonemodel_set.create(patient=user, phone_number=phone)
     user.groups = Group.objects.filter(name="Patients")
     user.save()
 
-    pmodel.save()
     #login as new user
     user = authenticate(username=email, password=password1)
     login(request, user)
