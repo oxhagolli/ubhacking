@@ -1,0 +1,30 @@
+/**
+  Written by Orens Xhagolli
+  Buffalo, N.Y.
+  November 14th, 2015
+**/
+
+body {
+    font-family: Verdana;
+}
+
+#header {
+    text-align: center;
+    background: white url(/static/images/background.jpg);
+    background-size:contain;
+    background-repeat: repeat-x;
+}
+
+#footer .jumbotron {
+    color: white;
+    text-align: center;
+    margin: 0;
+    background: white url(/static/images/footer.jpg);
+    background-size: contain;
+    background-repeat: repeat-x;
+}
+
+#footer .jumbotron p{
+    font-size: 1.0em;
+    margin: 0;
+}

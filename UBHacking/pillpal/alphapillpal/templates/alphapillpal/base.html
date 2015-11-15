@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>{% block title %}Alpha Pill Pal{% endblock %}</title>
+
+        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/static/style.css" />
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        {% block head_resources %}{% endblock %}
+    </head>
+
+    <body>
+        <div class="jumbotron" id="header">
+            <h1>Alpha Pill Pal</h1>
+            <p>Positively Healthy</p>
+        </div>
+        
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+        
+        <div class="footer navbar-fixed-bottom" id="footer">
+            <div class="jumbotron">
+                <p>UBHacking - Copyright &copy; 2015 Team Alpha Pal</p>
+            </div>
+        </div>
+    </body>
+</html>
