@@ -19,16 +19,16 @@ def login_page(request):
         #check if they left username or password blank
         if not request.POST.get("email", None) or \
             not request.POST.get("password", None):
-            vars["errorMessage"] = "Missing email or password."
+            vars["error_message"] = _("Missing email or password")
         else:
             email = request.POST.get("email")
             password = request.POST.get("password")
             user = authenticate(username = email, password = password)
             #if the username or password was incorrect
             if user == None:
-                vars["errorMessage"] = "Email and/or password is incorrect."
+                vars["error_message"] = _("Email and/or password is incorrect")
             elif not user.is_active:
-                vars["errorMessage"] = "Account is disabled"
+                vars["error_message"] = _("Account is disabled")
                 user = None
     if user == None:
         #if the user is already logged in
@@ -59,6 +59,8 @@ def home(request):
     # If none of these, let's check if they're an administrator
     if request.user.is_superuser or request.user.is_staff:
         return utils.render(request, "alphapillpal/home-administrator.html")
+
+
 
 
 #create new account
