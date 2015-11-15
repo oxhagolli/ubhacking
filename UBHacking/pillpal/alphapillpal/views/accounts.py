@@ -17,16 +17,16 @@ def login_page(request):
     #if the user is trying to log in
     if request.method =="POST":
         #check if they left username or password blank
-        if not request.POST.get("username", None) or \
+        if not request.POST.get("email", None) or \
             not request.POST.get("password", None):
-            vars["errorMessage"] = "Missing username or password."
+            vars["errorMessage"] = "Missing email or password."
         else:
-            username = request.POST.get("username")
+            email = request.POST.get("email")
             password = request.POST.get("password")
-            user = authenticate(username = username, password = password)
+            user = authenticate(username = email, password = password)
             #if the username or password was incorrect
             if user == None:
-                vars["errorMessage"] = "Username and/or password is incorrect."
+                vars["errorMessage"] = "Email and/or password is incorrect."
             elif not user.is_active:
                 vars["errorMessage"] = "Account is disabled"
                 user = None
@@ -74,7 +74,6 @@ def create_account(request):
         return utils.render(request, "alphapillpal/create.html")
 
     #otherwise, they submitted to create new account
-    username = request.POST.get("username", "").strip()
     email = request.POST.get("email", "").strip()
     password1 = request.POST.get("password1", "")
     password2 = request.POST.get("password2", "")
@@ -83,17 +82,17 @@ def create_account(request):
 
     def err(msg):
         return utils.render(request, "portal/create.html", {
-            "username": username,
+            "username": email,
             "email": email,
             "firstName": firstName,
             "lastName": lastName,
             "error_message": msg
         })
     #check username first
-    if not username:
-        return err(_("Missing username"))
-    if User.objects.filter(username=username).exists():
-        return err(_("Username alrready taken"))
+    if not email:
+        return err(_("Missing email"))
+    if User.objects.filter(username=email).exists():
+        return err(_("Email already taken"))
 
     #check email next
     if not email:
@@ -109,7 +108,7 @@ def create_account(request):
         return err(_("Passwords don't match"))
 
 
-    user = User.objects.create_user(username=username,
+    user = User.objects.create_user(username=email,
                                     email=email,
                                     password=password1,
                                     first_name=firstName,
@@ -120,6 +119,6 @@ def create_account(request):
     user.save()
 
     #login as new user
-    user = authenticate(username=username, password=password1)
+    user = authenticate(username=email, password=password1)
     login(request, user)
     return HttpResponseRedirect(reverse("alphapillpal:home"))
