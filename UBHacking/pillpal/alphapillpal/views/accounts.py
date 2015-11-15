@@ -42,6 +42,8 @@ def login_page(request):
         return HttpResponseRedirect(reverse("alphapillpal:home"))
 
 
+
+
 #logout user
 def logout_page(request):
     logout(request)
