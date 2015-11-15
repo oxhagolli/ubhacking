@@ -1,0 +1,33 @@
+{% extends 'alphapillpal/base.html' %}
+
+{% block content %}
+    {% if error_message %}
+    <div class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close"> &times; </a>
+        <strong>Error!</strong> {{ error_message }}
+    </div>
+    {% endif %}
+    <p>My Medications:</p>
+    <table id="meds" class=".table-striped .table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Time(s)</th>
+                <th>Day(s)</th>
+                <th>Remove?</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medication in medications %}
+            <tr>
+                <td>{{ medication[0] }}</td>
+                <td>{{ medication[1] }}</td>
+                <td>{{ medication[2] }}</td>
+                <td><button class="btn btn-lg">Remove</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button class="btn btn-lg col-md-offset-5 col-md-3">Add Medication</button>
+        
+{% endblock %}
